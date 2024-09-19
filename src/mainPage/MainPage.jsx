@@ -1,14 +1,21 @@
-import { useEffect } from "react";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function MainPage() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
       offset: 200,
     });
   }, []);
+
+  // Функция для закрытия мобильного меню
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <>
@@ -20,7 +27,30 @@ function MainPage() {
               Posudevskyi Artem
             </span>
           </div>
-          <ul className="flex space-x-6 text-base font-medium text-gray-300">
+
+          <div className="md:hidden">
+            <button
+              className="text-white focus:outline-none"
+              onClick={toggleMobileMenu}
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <ul className="hidden md:flex space-x-6 text-base font-medium text-gray-300">
             <li className="hover:text-teal-400 transition duration-300 cursor-pointer">
               <a href="#ex-tp">Expirience</a>
             </li>
@@ -28,12 +58,57 @@ function MainPage() {
               <a href="#projects-tp">Projects</a>
             </li>
             <li className="hover:text-teal-400 transition duration-300 cursor-pointer">
-              <a href="#contacts-tp">Contacts</a>
+              <a href="contacts-tp">Contacts</a>
             </li>
           </ul>
         </div>
-      </header>
 
+        {isMobileMenuOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+            <div className="bg-gray-800 p-8 rounded-lg text-center">
+              <button
+                className="absolute top-4 right-4 text-white"
+                onClick={toggleMobileMenu}
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  ></path>
+                </svg>
+              </button>
+              <ul className="space-y-6 text-lg text-white font-medium">
+                <li
+                  onClick={toggleMobileMenu}
+                  className="hover:text-teal-400 transition duration-300 cursor-pointer"
+                >
+                  <a href="ex-tp">Expirience</a>
+                </li>
+                <li
+                  onClick={toggleMobileMenu}
+                  className="hover:text-teal-400 transition duration-300 cursor-pointer"
+                >
+                  <a href="#projects-tp">Projects</a>
+                </li>
+                <li
+                  onClick={toggleMobileMenu}
+                  className="hover:text-teal-400 transition duration-300 cursor-pointer"
+                >
+                  <a href="#contacts-tp">Contacts</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        )}
+      </header>
       {/* MAIN */}
       <main className="bg-neutral-900 text-white p-12 flex items-center justify-center">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center">
