@@ -120,9 +120,9 @@ function MainPage() {
             <span className="block text-gray-400 mb-6">
               I am a front-end developer with more than 1 years of experience...
             </span>
-            <button className="px-6 py-2 bg-teal-500 text-white rounded-lg shadow-lg hover:opacity-90 transition duration-300">
+            <a download="cv_posudevskyi_artem.pdf" href="/portfolio/public/cv_posudevskyi_artem.pdf" className="px-6 py-2 bg-teal-500 text-white rounded-lg shadow-lg hover:opacity-90 transition duration-300">
               Download CV
-            </button>
+            </a>
           </div>
 
           <div data-aos="fade-left" className="ml-0 md:ml-8 mt-8 md:mt-0">
