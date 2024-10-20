@@ -12,7 +12,6 @@ function MainPage() {
     });
   }, []);
 
-  // Функция для закрытия мобильного меню
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
